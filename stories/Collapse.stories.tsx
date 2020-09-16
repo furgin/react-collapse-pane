@@ -90,6 +90,7 @@ storiesOf('Collapsable Panes', module)
           resizerOptions={{
             grabberSize,
           }}
+          classNames={['left']}
           hooks={{
             onCollapse: action(`collapsedSizes`),
             onDragStarted: action('onDragStarted'),

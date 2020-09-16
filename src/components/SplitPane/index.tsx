@@ -46,6 +46,7 @@ export interface SplitPaneProps {
   split: SplitType;
   direction?: Direction;
   className?: string;
+  classNames?: string[];
 
   initialSizes?: number[];
   minSizes?: number | number[];
@@ -115,7 +116,13 @@ export const SplitPane = ({ className = '', ...props }: SplitPaneProps) => {
           collapsedIndices={collapsedIndices}
           split={props.split}
           minSize={getMinSize(paneIndex, props.minSizes)}
-          className={className}
+          className={[
+            props.classNames && props.classNames[paneIndex],
+            'pane.' + paneIndex,
+            className,
+          ]
+            .filter(Boolean)
+            .join(' ')}
           transitionTimeout={props.collapseOptions?.collapseTransitionTimeout}
           collapseOverlayCss={props.collapseOptions?.overlayCss}
         >
